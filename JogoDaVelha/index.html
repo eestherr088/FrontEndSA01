@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lampada com JavaScript</title>
-    <link rel="stylesheet" href="style.css"
-</head>
-<body>
-    <div class="container">
-        <h2>Jogo da Velha</h2>
-        <div class="grid">
-            <div class="celula" id="0"></div>
-            <div class="celula" id="1"></div>
-            <div class="celula" id="2"></div>
-            <div class="celula" id="3"></div>
-            <div class="celula" id="4"></div>
-            <div class="celula" id="5"></div>
-            <div class="celula" id="6"></div>
-            <div class="celula" id="7"></div>
-            <div class="celula" id="8"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Jogo da Velha</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.0.2/tailwind.min.css"/>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <body class="w-screen h-screen ctr">
+      <div class="tabel ctr">
+        <div class="board">
+          <span id="col-0"></span><span id="col-1"></span
+          ><span id="col-2"></span><span id="col-3"></span
+          ><span id="col-4"></span><span id="col-5"></span
+          ><span id="col-6"></span><span id="col-7"></span
+          ><span id="col-8"></span>
         </div>
-    </div>
-</body>
-<script src="script.js"></script>
-</html>
+        <button id="reset">Reset</button>
+      </div>
+    </body>
+    <script src="script.js"></script>
+  </body>
+</html>            
