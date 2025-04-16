@@ -1,70 +1,97 @@
-@import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
 * {
-  font-family: "Press Start 2P", cursive;
-  user-select: none;
-}
-
-body {
-  background: #285ca1;
-}
-
-.ctr {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tabel {
-  width: 480px;
-  height: 480px;
-  background: #76afd6;
-  border-radius: 100%;
-  border: 1px solid #0d152b;
-  box-shadow: -2px 20px 0 -3px #4283c4, -20px 20px #0d152b;
-  flex-direction: column;
-}
-
-.board {
-  width: 369.2307692308px;
-  height: 369.2307692308px;
-  background: #d3e2ea;
-  border-radius: 20px;
-  border: 1px solid #0d152b;
-  box-shadow: -10px 5px 0px -2px #192852;
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 8px;
-  padding: 12px;
-}
-
-.board > span {
-  background: #76afd6;
-  color: #fff;
-  font-size: 4em;
-  padding-left: 9px;
-  padding-top: 6px;
-  text-align: center;
-  border: 2px solid #0d152b;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: -1.2px 2px 0px 0px #141d4c;
-}
-.board > span:hover {
-  background: #6aa8d2;
-}
-.board > span:active {
-  box-shadow: -1.2px 7.4px 0px -2.5px #141d4c;
-}
-
-#reset {
-  margin-top: 14px;
-  color: #fff;
-}
-
-.win {
-  background: #55efc4 !important;
-}
-                                         
-            
+    font-family: "Press Start 2P", cursive;
+    user-select: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /*  Corpo com fundo azul  */
+  body {
+    background: #285ca1;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Centraliza tudo (usado em body e no container)  */
+  .ctr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /*  Container do jogo (tabuleiro + botão)  */
+  .tabel {
+    width: 480px;
+    height: auto;
+    background: #76afd6;
+    border-radius: 20px;
+    border: 1px solid #0d152b;
+    box-shadow: -2px 20px 0 -3px #4283c4, -20px 20px #0d152b;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /*  Tabuleiro do jogo (grade 3x3)  */
+  .board {
+    width: 369px;
+    height: 369px;
+    background: #d3e2ea;
+    border-radius: 20px;
+    border: 1px solid #0d152b;
+    box-shadow: -10px 5px 0px -2px #192852;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+    padding: 12px;
+  }
+  
+  /*  Células individuais do tabuleiro  */
+  .board > span {
+    background: #76afd6;
+    color: #fff;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #0d152b;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: -1.2px 2px 0px 0px #141d4c;
+  }
+  
+  .board > span:hover {
+    background: #6aa8d2;
+  }
+  
+  .board > span:active {
+    box-shadow: -1.2px 7.4px 0px -2.5px #141d4c;
+  }
+  
+  /* Botão de reset  */
+  #reset {
+    background: #0d152b;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 0.8em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  #reset:hover {
+    background: #192852;
+  }
+  
+  /*  Destaque para células vencedoras  */
+  .win {
+    background: #55efc4 !important;
+    color: #0d152b !important;
+  }
