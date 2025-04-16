@@ -1,63 +1,79 @@
 'use strict'
 
-const _ = document,
-          cols = Array.from(_.querySelectorAll('.board > span')),
-					reset = _.querySelector('#reset')
-let cur = true
-let arr = new Array(9).fill(null)
-const wins = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
+// Seletores e variáveis iniciais
+const doc = document 
+const cells = Array.from(doc.querySelectorAll('.board > span'))  // células do tabuleiro
+const resetButton = doc.querySelector('#reset')
+
+let isPlayer0 = true  // alterna turno
+let boardState = new Array(9).fill(null)  // estado do tabuleiro
+
+const winCombos = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Linhas
+  [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Colunas
+  [0, 4, 8], [2, 4, 6]             // Diagonais
 ]
-function event(can) {
-	reset.addEventListener('click', fnreset)
-  for(let col of cols)
-    if(can)
-      col.addEventListener('click', play)
-    else
-      col.removeEventListener('click', play)
-}
-event(true)
-function play(e) {
-  const __ = e.target
-  if(!__.innerHTML){
-    cur = !cur
-    __.innerHTML = cur ? '<h1 name="O">O</h1>' :  '<h1 name="X">X</h1>'
-    move(parseInt(__.id.split(/\D+/g)[1]), __.childNodes[0].getAttribute('name'))
-  }
-}
 
-function move(ind, sign) {
-  arr[ind] = sign
-  console.log(arr)
+// Inicializa eventos
+function setupEvents(enable) {
+  resetButton.addEventListener('click', resetGame)
 
-  for (let i = 0; i < wins.length; i++) {
-     let [a, b, c] = wins[i] 
-      if(cmp(arr[a], arr[b], arr[c])){
-        console.log(sign, ' wins')
-        event(false)
-        cols[a].classList.add('win')
-        cols[b].classList.add('win')
-        cols[c].classList.add('win')
-      }
-  }
-}
-function cmp(a, b, c) {
-  if(a && b && c)
-    return (a === b) && (a === c) && (b === c)
-}
-
-function fnreset() {
-    for(let col of cols){
-      col.classList.remove('win')
-      col.innerHTML = ''
+  for (let cell of cells) {
+    if (enable) {
+      cell.addEventListener('click', handlePlay)
+    } else {
+      cell.removeEventListener('click', handlePlay)
     }
-    arr = new Array(9).fill(null)
-    event(true)
-}            
+  }
+}
+setupEvents(true)
+
+// Função principal de jogada
+function handlePlay(event) {
+  const cell = event.target
+
+  if (!cell.innerHTML) {
+    isPlayer0 = !isPlayer0
+    const currentPlayer = isPlayer0 ? 'O' : 'X'
+
+    // Atualiza a célula clicada
+    cell.innerHTML = `<h1 name="${currentPlayer}">${currentPlayer}</h1>`
+
+    const cellIndex = parseInt(cell.id.split(/\D+/g)[1])
+    updateGame(cellIndex, currentPlayer)
+  }
+}
+
+// Atualiza o jogo e verifica vitória
+function updateGame(index, symbol) {
+  boardState[index] = symbol
+  console.log(boardState)
+
+  for (let [a, b, c] of winCombos) {
+    if (checkWin(boardState[a], boardState[b], boardState[c])) {
+      console.log(symbol, 'wins!')
+      setupEvents(false)
+
+      // Destaca células vencedoras
+      cells[a].classList.add('win')
+      cells[b].classList.add('win')
+      cells[c].classList.add('win')
+      break
+    }
+  }
+}
+
+// Compara 3 valores para verificar vitória
+function checkWin(a, b, c) {
+  return a && b && c && a === b && b === c
+}
+
+// Reseta o jogo
+function resetGame() {
+  for (let cell of cells) {
+    cell.classList.remove('win')
+    cell.innerHTML = ''
+  }
+  boardState = new Array(9).fill(null)
+  setupEvents(true)
+}

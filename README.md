@@ -14,3 +14,7 @@ Um dos principais desafios foi garantir que o tempo fosse exibido corretamente e
 Controle de Estado (Iniciar/Pausar):
 Garantir que o botão de iniciar/pausar alterasse seu comportamento corretamente foi uma parte importante do projeto. Precisamos garantir que o botão mudasse o texto de "Iniciar" para "Pausar" e vice-versa de forma eficiente, sem causar erros no fluxo da contagem de tempo.
 
+jogo da velha:
+O código implementa um jogo da velha simples e funcional utilizando HTML, CSS e JavaScript. O HTML estrutura a interface com um tabuleiro de 3x3 composto por nove células (<span>) e um botão de "Reset". O CSS estiliza o jogo com visual retrô, cores chamativas e efeitos nas células, além de destacar em verde as posições vencedoras.
+
+A lógica do jogo é controlada pelo JavaScript. Ele inicia o jogo, alterna entre os jogadores "X" e "O", registra as jogadas no estado interno (boardState), e verifica se alguma das oito combinações de vitória foi atingida após cada jogada. Caso alguém vença, o jogo é pausado e as células da jogada vencedora são destacadas. O botão "Reset" limpa o tabuleiro e reinicia a partida. Todo o funcionamento é baseado em eventos de clique e atualizações no DOM.
